@@ -24,7 +24,7 @@ class Home extends Component {
 		return (
      		<div className="page-container">
                  {this.renderHead()}
-                Mikhail Official
+                Mikhail Official Updated
             </div>
 				
 		);
