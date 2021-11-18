@@ -1,6 +1,16 @@
 $animation_easing: cubic-bezier(0.02, 0.41, 0.42, 0.8);
 $animation_easing2: cubic-bezier(0.12, 0.77, 0.28, 0.86);
 
+@for $i from 1 through 20 {
+    .transition-element {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 0.03s;
+      }
+    }
+  }
+
+// --------------------------------------------------
+
 .animation-text-wipe {
     -webkit-mask-image: linear-gradient(to left, #0000 25%, #000 75%);
     -webkit-mask-size: 500%;
@@ -25,6 +35,7 @@ $animation_easing2: cubic-bezier(0.12, 0.77, 0.28, 0.86);
 }
 
 // --------------------------------------------------
+
 @keyframes moveGradient {
     0% {
         transform: translateX(15%) translateY(-15%);

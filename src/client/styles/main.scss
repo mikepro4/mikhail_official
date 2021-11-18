@@ -15,9 +15,18 @@
 
 // pages
 @import "../App.scss";
+@import "../react/pages/auth/index.scss";
+
+// form
+@import "../react/components/form/BladeInput.scss";
+@import "../react/components/form/BladeTextarea.scss";
+@import "../react/components/form/ColorPicker.scss";
+@import "../react/components/form/Slider.scss";
+@import "../react/components/form/TabGroup.scss";
 
 // componenta
 @import "../react/components/header/index.scss";
+
 
 
 html {
