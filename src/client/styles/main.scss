@@ -16,6 +16,9 @@
 // pages
 @import "../App.scss";
 
+// componenta
+@import "../react/components/header/index.scss";
+
 
 html {
     touch-action: manipulation;
@@ -70,7 +73,8 @@ body {
 
 a {
 	text-decoration: none !important;
-	font-weight: 400;
+    font-weight: 400;
+    color: $white;
 }
 
 .placeholder {

@@ -18,13 +18,10 @@ class Home extends Component {
 		</Helmet>
     )
 
-
 	render() {
-
 		return (
      		<div className="page-container">
-                 {this.renderHead()}
-                Mikhail Official Updated
+                {this.renderHead()}
             </div>
 				
 		);
