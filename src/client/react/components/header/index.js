@@ -25,6 +25,12 @@ class Header extends Component {
                 showMenuBars: true,
             })
         }, 500)
+
+        // this.setState({
+        //     showMenuBars: true,
+        //     showWord: true,
+        //     showContent: true
+        // })
     }
 
     renderLines() {
