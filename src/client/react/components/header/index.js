@@ -490,7 +490,8 @@ class Header extends Component {
 function mapStateToProps(state) {
     return {
         location: state.router.location,
-        demoMode: false
+        demoMode: false,
+        user: state.app.user
     };
 }
 

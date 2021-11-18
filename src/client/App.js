@@ -9,8 +9,37 @@ FocusStyleManager.onlyShowFocusOnTabs();
 
 import Header from "./react/components/header"
 
+import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
+
 class App extends Component {
     state = {
+        appVisible: false
+    }
+
+    componentDidMount() {
+        this.auth()
+    }
+
+    auth() {
+		const token = localStorage.getItem('token');
+		if (token) {
+			this.props.authUser()
+			this.loadUser()
+		} else {
+			this.showApp()
+		}
+    }
+    
+    loadUser() {
+		this.props.fetchCurrentUser(() => {
+			this.showApp()
+		})
+    }
+    
+    showApp() {
+        this.setState({
+            appVisible: true
+        })
     }
 
     render() {
@@ -31,10 +60,15 @@ class App extends Component {
 }
 function mapStateToProps(state) {
     return {
+        appReducer: state.appReducer,
+        user: state.app.user,
     };
 }
 
 export default {
     component: withRouter(connect(mapStateToProps, {
+        authUser, 
+        fetchCurrentUser, 
+        clearCurrentUser 
     })(App))
 };
