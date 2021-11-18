@@ -138,9 +138,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        // display: flex;
-        // align-items: center;
-        // justify-content: center;
 
         .menu-links {
             opacity: 0;
@@ -156,8 +153,6 @@
             flex-direction: column;
             z-index: 0;
             margin-top: -70px;
-
-            
         }
     }
   }
@@ -205,6 +200,10 @@
             font-size: 55px;
             font-weight: 600;
             letter-spacing: 0.34px;
+
+            @media only screen and (min-width: $mobile) {
+                font-size: 100px;
+            }
         }
     }
 }
@@ -237,9 +236,7 @@
         text-align: center;
 
         a {
-            // font-weight: 600;
             letter-spacing: 0.34px;
-            // opacity: 0.4;
         }
     }
 

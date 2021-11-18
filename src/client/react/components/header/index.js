@@ -4,6 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import Anime from 'react-anime';
 import { motion } from "framer-motion"
+import keydown from "react-keydown";
 
 class Header extends Component {
 
@@ -17,7 +18,6 @@ class Header extends Component {
             showWord: false
         }
     }
-
 
     componentDidMount() {
         setTimeout(() => {
@@ -236,7 +236,7 @@ class Header extends Component {
         }
 
         if (this.state.menuOpen) {
-           this.hideMenu()
+            this.hideMenu()
         }
     }
 
@@ -421,6 +421,7 @@ class Header extends Component {
         )
     }
 
+    @keydown("esc")
     hideMenu() {
         this.setState({
             menuOpen: false,
@@ -439,62 +440,44 @@ class Header extends Component {
 
 
     render() {
+        return (
+            <div
+                className={classNames({
+                    "app-header": true,
+                    "demo-mode": this.props.demoMode
+                })}
+            >
+                <div className="app-header-wrapper">
 
-        const bottomOpen = [
-            { value: 'M39.50625,9.5 C30.8788547,9.5 28.639837,0.5 20,0.5 C11.360163,0.5 8.88972652,9.5 0.5,9.5' }]
-
-        const bottomClosed = [
-            { value: 'M39.50625,9.5 C30.8788547,9.5 28.642962,9.5 20.003125,9.5 C11.363288,9.5 8.88972652,9.5 0.5,9.5' }]
-
-        const topOpen = [
-            { value: 'M39.50625,0.5 C30.8788547,0.5 28.642962,0.5 20.003125,0.5 C11.363288,0.5 8.88972652,0.5 0.5,0.5' }]
-
-        const topClosed = [
-            { value: 'M39.50625,0.5 C30.8788547,0.5 28.642962,9.5109931 20.003125,9.5109931 C11.363288,9.5109931 8.88972652,0.5 0.5,0.5' }]
-
-
-        if (this.props.location.pathname == "/search") {
-            return (<div></div>)
-        } else {
-            return (
-                <div
-                    className={classNames({
-                        "app-header": true,
-                        "demo-mode": this.props.demoMode
-                    })}
-                >
-                    <div className="app-header-wrapper">
-
-                        <div
-                            className="header-left"
-                        >
-                            <Link
-                                to="/"
-                                onClick={() => {
-                                    if (this.state.menuOpen) {
-                                        this.hideMenu()
-                                    }
-                                }}>
-                                Mikhail Proniushkin
+                    <div
+                        className="header-left"
+                    >
+                        <Link
+                            to="/"
+                            onClick={() => {
+                                if (this.state.menuOpen) {
+                                    this.hideMenu()
+                                }
+                            }}>
+                            Mikhail Proniushkin
                                 </Link>
-                        </div>
+                    </div>
 
-                        <div className="menu_icon" onClick={() => {
-                            this.handleClick()
-                        }}>
+                    <div className="menu_icon" onClick={() => {
+                        this.handleClick()
+                    }}>
 
-                            {this.renderLines()}
-
-
-                        </div>
+                        {this.renderLines()}
 
 
                     </div>
-                    {this.renderMenu()}
+
 
                 </div>
-            );
-        }
+                {this.renderMenu()}
+
+            </div>
+        );
     }
 }
 
