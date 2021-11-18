@@ -25,7 +25,6 @@ class Header extends Component {
                 showMenuBars: true,
             })
         }, 500)
-
     }
 
     renderLines() {
@@ -237,19 +236,7 @@ class Header extends Component {
         }
 
         if (this.state.menuOpen) {
-            this.setState({
-                menuOpen: false,
-                menuClosing: true,
-                showContent: false
-            })
-
-            document.body.classList.remove("no-scroll")
-
-            setTimeout(() => {
-                this.setState({
-                    menuClosing: false,
-                })
-            }, 1000)
+           this.hideMenu()
         }
     }
 
@@ -434,6 +421,22 @@ class Header extends Component {
         )
     }
 
+    hideMenu() {
+        this.setState({
+            menuOpen: false,
+            menuClosing: true,
+            showContent: false
+        })
+
+        document.body.classList.remove("no-scroll")
+
+        setTimeout(() => {
+            this.setState({
+                menuClosing: false,
+            })
+        }, 1000)
+    }
+
 
     render() {
 
@@ -469,23 +472,8 @@ class Header extends Component {
                                 to="/"
                                 onClick={() => {
                                     if (this.state.menuOpen) {
-                                        this.setState({
-                                            menuOpen: false,
-                                            menuClosing: true
-                                        })
-
-                                        document.body.classList.remove("no-scroll")
-
-                                        setTimeout(() => {
-                                            this.setState({
-                                                menuClosing: false
-                                            })
-                                        }, 1000)
-
-                                        this.props.getMainShape()
+                                        this.hideMenu()
                                     }
-
-                                    this.props.getMainShape()
                                 }}>
                                 Mikhail Proniushkin
                                 </Link>
