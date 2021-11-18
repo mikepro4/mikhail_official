@@ -1,0 +1,115 @@
+$animation_easing: cubic-bezier(0.02, 0.41, 0.42, 0.8);
+$animation_easing2: cubic-bezier(0.12, 0.77, 0.28, 0.86);
+
+// --------------------------------------------------
+@keyframes moveGradient {
+    0% {
+        transform: translateX(15%) translateY(-15%);
+    }
+
+    50% {
+        transform: translateX(-25%) translateY(+15%);
+    }
+
+    100% {
+        transform: translateX(15%) translateY(-15%);
+    }
+}
+
+.animation-moveGradient {
+    animation: moveGradient 10s 0s linear infinite;
+    transform: translateX(15%) translateY(-15%);
+}
+
+// --------------------------------------------------
+
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
+.animation-fadeInSlide {
+    opacity: 0;
+    animation: fadeInSlide 0.2s 0s $animation_easing forwards;
+}
+
+// --------------------------------------------------
+
+@keyframes fadeInScale {
+    from {
+        transform: scale(0.97, 0.97);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+}
+
+.animation-fadeInScale {
+    opacity: 0;
+    animation: fadeInScale 0.5s 0s $animation_easing forwards;
+}
+
+// --------------------------------------------------
+
+@keyframes slideInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.animation-slideInBottom {
+    opacity: 0;
+    animation: slideInBottom 0.4s 0s $animation_easing forwards;
+}
+
+// --------------------------------------------------
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.animation-fadeIn {
+    opacity: 0;
+    animation: fadeIn 0.2s linear forwards;
+}
+
+// --------------------------------------------------
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.animation-fadeOut {
+    opacity: 0;
+    animation: fadeOut 0.2s linear forwards;
+}
+
+// --------------------------------------------------
