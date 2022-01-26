@@ -14,7 +14,8 @@ import {
     SHOW_DRAWER,
     HIDE_DRAWER,
     ACTIVATE_KEY,
-    DEACTIVATE_KEY
+    DEACTIVATE_KEY,
+    LOAD_WORD
 } from "../actions/types";
 
 export const initialState = {
@@ -30,11 +31,17 @@ export const initialState = {
     drawerOpen: false,
     drawerType: null,
     drawerData: {},
-    activeKeys: []
+    activeKeys: [],
+    activeWord: {}
 };
 
 export const appReducer = (state = initialState, action) => {
 	switch (action.type) {
+        case LOAD_WORD:
+            return {
+                ...state,
+                activeWord: action.payload
+            }
         case DEMO_ON:
 			return {
 				...state,

@@ -10,6 +10,10 @@ FocusStyleManager.onlyShowFocusOnTabs();
 import Header from "./react/components/header"
 import Scroll from "./react/components/scroll"
 
+import qs from "qs";
+import * as _ from "lodash"
+
+import { loadWord } from "../client/redux/actions/wordsActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 
 class App extends Component {
@@ -19,6 +23,7 @@ class App extends Component {
 
     componentDidMount() {
         this.auth()
+        this.loadWord()
     }
 
     auth() {
@@ -30,6 +35,16 @@ class App extends Component {
 			this.showApp()
 		}
     }
+
+    componentDidUpdate(prevprops) {
+        if(!_.isEqual(prevprops.location.search, this.props.location.search)) {
+            this.loadWord()
+        }
+    }
+
+    getQueryParams = () => {
+		return qs.parse(this.props.location.search.substring(1));
+    };
     
     loadUser() {
 		this.props.fetchCurrentUser(() => {
@@ -40,6 +55,13 @@ class App extends Component {
     showApp() {
         this.setState({
             appVisible: true
+        })
+    }
+
+    loadWord() {
+        // console.log(this.getQueryParams())
+        this.props.loadWord(this.getQueryParams().word, (data) => {
+            console.log(data)
         })
     }
 
@@ -72,6 +94,7 @@ export default {
     component: withRouter(connect(mapStateToProps, {
         authUser, 
         fetchCurrentUser, 
-        clearCurrentUser 
+        clearCurrentUser,
+        loadWord
     })(App))
 };
