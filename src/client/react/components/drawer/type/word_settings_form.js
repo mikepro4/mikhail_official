@@ -13,12 +13,14 @@ import TabGroup from "../../form/TabGroup";
 import Checkbox from "../../form/Checkbox";
 import ColorPicker from "../../form/ColorPicker";
 
+import Block from "../../block"
+
 
 class WordSettingsForm extends Component {
 
     renderBlock(i) {
         return(
-            <div key={i} className="single-block">Block</div>
+            <div key={i} className="single-block"><Block position={i}/></div>
         )
     }
 

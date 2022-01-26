@@ -179,3 +179,34 @@ export const updateWord = (word, data, success) => async (
 
 // ===========================================================================
 
+// ===========================================================================
+
+
+export const updateBlocks = (word, block, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+
+
+    let newBlocks = []
+    if(!word.blocks || word.blocks.length == 0) {
+        newBlocks = [block]
+    } else {
+        newBlocks = _.concat(word.blocks, [block])
+    }
+
+    await api
+        .post("/word/updateBlocks", { 
+            wordId: word._id, 
+            blocks: newBlocks
+        })
+        .then(response => {
+            if (success) {
+                success(response.data);
+            }
+        })
+        .catch(() => {
+        });
+}
+

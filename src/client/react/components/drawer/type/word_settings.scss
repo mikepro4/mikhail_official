@@ -6,10 +6,4 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
     grid-gap: 10px;
-    
-    .single-block {
-        width: 100px;
-        height: 100px;
-        background: red;
-    }
 }
