@@ -8,11 +8,15 @@ import { FocusStyleManager } from "@blueprintjs/core";
 FocusStyleManager.onlyShowFocusOnTabs();
 
 import Header from "./react/components/header"
+import Drawer from "./react/components/drawer"
 import Scroll from "./react/components/scroll"
+import SettingsIcon from "./react/components/icons/settings"
 
 import qs from "qs";
 import * as _ from "lodash"
 
+
+import { showDrawer } from "../client/redux/actions/appActions"
 import { loadWord } from "../client/redux/actions/wordsActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 
@@ -68,13 +72,17 @@ class App extends Component {
     render() {
         return (
             <div className="app">
-
+                {this.props.drawerOpen && <Drawer type={this.props.drawerType} />}
                 <Header/>
 
                 <div className="main-section">
                     <div className="app-route-container">
                         {renderRoutes(this.props.route.routes)}
                     </div>
+                </div>
+
+                <div className="main-settings" onClick={() =>  this.props.showDrawer("word-settings")}>
+                    <SettingsIcon />
                 </div>
 
                 {/* <Scroll/> */}
@@ -87,6 +95,8 @@ function mapStateToProps(state) {
     return {
         appReducer: state.appReducer,
         user: state.app.user,
+        drawerType: state.app.drawerType,
+        drawerOpen: state.app.drawerOpen
     };
 }
 
@@ -95,6 +105,7 @@ export default {
         authUser, 
         fetchCurrentUser, 
         clearCurrentUser,
-        loadWord
+        loadWord,
+        showDrawer
     })(App))
 };

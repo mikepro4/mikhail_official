@@ -161,28 +161,11 @@ export const updateWord = (word, data, success) => async (
         mainDate: date
     })
 
-    let newSHape = _.merge({}, word.defaultViz.word, data.word)
-    let newPoint = _.merge({}, word.defaultViz.point, data.point)
-    let newOverlay = _.merge({}, word.defaultViz.point, data.overlay)
-
-    let newWord = {
-        ...word,
-        metadata: newMetadata,
-        defaultViz: {
-            word: newSHape,
-            point: newPoint,
-            overlay: newOverlay,
-            colors: data.colors
-        }
-    }
-
 
     await api
         .post("/word/update", { 
-            wordId: newWord._id, 
-            metadata: newWord.metadata,
-            defaultViz: newWord.defaultViz,
-            status: newWord.status
+            wordId: word._id, 
+            metadata: newMetadata,
         })
         .then(response => {
             if (success) {

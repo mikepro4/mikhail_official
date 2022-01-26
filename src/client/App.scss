@@ -2,3 +2,10 @@
 	display: block;
 	position: relative;
 }
+
+.main-settings {
+    position: fixed;
+    z-index: 1;
+    bottom: 20px;
+    right: 20px;
+}

@@ -147,3 +147,33 @@ $animation_easing2: cubic-bezier(0.12, 0.77, 0.28, 0.86);
 }
 
 // --------------------------------------------------
+
+// --------------------------------------------------
+
+@keyframes slideDrawer {
+    0% {
+      transform: translateY(150%) ;
+    }
+  
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .animation-slideDrawer {
+    animation: slideDrawer 0.3s cubic-bezier(.13,.9,.38,1) forwards;
+  }
+  
+  @keyframes hideDrawer {
+    0% {
+      transform: translateY(0) ;
+    }
+  
+    100% {
+      transform: translateY(150%);
+    }
+  }
+  
+  .animation-hideDrawer {
+    animation: hideDrawer 0.3s cubic-bezier(.13,.9,.38,1) forwards;
+  }
