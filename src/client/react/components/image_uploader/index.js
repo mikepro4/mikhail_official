@@ -34,13 +34,13 @@ class Avatar extends Component {
 			const formData = new FormData();
 			formData.append("file", file);
 			formData.append("tags", `epic`);
-			formData.append("upload_preset", "mainImage"); // Replace the preset name with your own
-			formData.append("api_key", "xn-rZDW9uGV-V9lUfKHK782G-QY"); // Replace API key with your own Cloudinary key
+			formData.append("upload_preset", "block_image"); // Replace the preset name with your own
+			formData.append("api_key", "DhgKXiXYQqQj0nEB74w_70HfPWI"); // Replace API key with your own Cloudinary key
 			formData.append("timestamp", (Date.now() / 1000) | 0);
 
 			return axios
 				.post(
-					"https://api.cloudinary.com/v1_1/hasana/image/upload",
+					"https://api.cloudinary.com/v1_1/dcdnt/image/upload",
 					formData,
 					config
 				)
