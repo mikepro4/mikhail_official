@@ -8,6 +8,7 @@ import { FocusStyleManager } from "@blueprintjs/core";
 FocusStyleManager.onlyShowFocusOnTabs();
 
 import Header from "./react/components/header"
+import Scroll from "./react/components/scroll"
 
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 
@@ -53,6 +54,8 @@ class App extends Component {
                         {renderRoutes(this.props.route.routes)}
                     </div>
                 </div>
+
+                {/* <Scroll/> */}
                 
             </div>
         )

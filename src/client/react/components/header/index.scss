@@ -7,6 +7,7 @@
     z-index: 1000;
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
 
     &.demo-mode {
         display: none;
@@ -130,10 +131,10 @@
     width: 100%;
     height: 0;
     background: #070709;
-    overflow: hidden;
+    overflow: scroll;
   
     .menu_content {
-        margin: 100px 40px 40px 40px;
+        margin: 100px 20px 40px 20px;
         top: 0;
         left: 0;
         right: 0;

@@ -5,6 +5,9 @@ import classNames from "classnames"
 import Anime from 'react-anime';
 import { motion } from "framer-motion"
 import keydown from "react-keydown";
+import WordsList from "./words_list"
+
+import Scroll from "../scroll"
 
 class Header extends Component {
 
@@ -366,57 +369,14 @@ class Header extends Component {
                     animate={this.state.menuOpen ? "open" : "closed"}
                     variants={menuContainer}
                     className="menu_container"
+                    id="menu-container"
                 >
 
                     {this.state.showContent && <div className="menu_content">
-                        <ul className="menu-links" onClick={() => {
-                            this.handleClick()
-                        }}>
-                            <li className="menu-link">
+                        <WordsList handleClick={() => this.hideMenu()}/>
+                        <Scroll />
 
-                                <motion.div
-                                    animate={this.state.showWord ? "open" : "closed"}
-                                    variants={wordItem}
-                                    custom={0.1}
-                                    className="menu-word-container"
-                                >
-                                    <Link to="/shapes">Shapes</Link>
-                                </motion.div>
-                            </li>
-                            <li className="menu-link">
-                                <motion.div
-                                    animate={this.state.showWord ? "open" : "closed"}
-                                    variants={wordItem}
-                                    custom={0.2}
-                                    className="menu-word-container"
-                                >
-                                    <Link to="/music">Music</Link>
-                                </motion.div>
-                            </li>
-                            <li className="menu-link">
-                                <motion.div
-                                    animate={this.state.showWord ? "open" : "closed"}
-                                    variants={wordItem}
-                                    custom={0.3}
-                                    className="menu-word-container"
-                                >
-                                    <Link to="/work">Work</Link>
-                                </motion.div>
-                            </li>
-                            <li className="menu-link">
-                                <motion.div
-                                    animate={this.state.showWord ? "open" : "closed"}
-                                    variants={wordItem}
-                                    custom={0.4}
-                                    className="menu-word-container"
-                                >
-                                    <Link to="/about">About</Link>
-
-                                </motion.div>
-                            </li>
-                        </ul>
-
-                        {this.renderBottom()}
+                        {/* {this.renderBottom()} */}
                     </div>}
 
                 </motion.div>
