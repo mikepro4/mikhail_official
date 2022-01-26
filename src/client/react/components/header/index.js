@@ -455,18 +455,16 @@ class Header extends Component {
             >
                 <div className="app-header-wrapper">
 
-                    <div
-                        className="header-left"
-                    >
+                    <div className="header-left">
                         <Link
                             to="/"
                             onClick={() => {
                                 if (this.state.menuOpen) {
                                     this.hideMenu()
                                 }
-                            }}>
+                        }}>
                             Mikhail Proniushkin
-                                </Link>
+                        </Link>
                     </div>
 
                     <div className="menu_icon" onClick={() => {
@@ -475,13 +473,10 @@ class Header extends Component {
 
                         {this.renderLines()}
 
-
                     </div>
-
 
                 </div>
                 {this.renderMenu()}
-
             </div>
         );
     }

@@ -7,6 +7,8 @@ import moment from 'moment'
 import classNames from "classnames";
 import * as _ from "lodash"
 
+import Word from "./word"
+
 class Home extends Component {
 
     state = {
@@ -20,8 +22,10 @@ class Home extends Component {
 
 	render() {
 		return (
-     		<div className="page-container">
+     		<div className="word-container">
                 {this.renderHead()}
+
+                <Word/>
             </div>
 				
 		);
