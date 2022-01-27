@@ -93,7 +93,8 @@ class App extends Component {
                     <SettingsIcon />
                 </div>
 
-                <Viz/>
+                {this.props.word && this.props.word.metadata && this.props.word.metadata.shapeId ? <Viz/> : ""}
+
 
                 {/* <Scroll/> */}
                 

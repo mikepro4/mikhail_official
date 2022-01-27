@@ -20,20 +20,19 @@ class wordView extends Component {
     render() {
         return(
             <div className="word-view" >
-               <div className="word-title">
-                   
-               </div>
                <Link 
-                to={"/?word=" + this.props.item._id}
-                onClick={() =>this.props.handleClick()}
+                    to={"/?word=" + this.props.item._id}
+                    onClick={() =>this.props.handleClick()}
+                    className={classNames({
+                        "word-title": true,
+                        "active": this.props.word._id == this.props.item._id
+                    })}
                 >
                    {this.props.item.metadata.title}
-
-                   
                </Link>
-               <div onClick={() => this.props.deleteWord(this.props.item._id, this.props.item, () => {
+               {/* <div className= onClick={() => this.props.deleteWord(this.props.item._id, this.props.item, () => {
                         this.props.updateCollection(true)
-                   })}>Delete</div>
+                   })}>Delete</div> */}
             </div>
         )
         
@@ -46,6 +45,7 @@ function mapStateToProps(state) {
         user: state.app.user,
         authenticated: state.auth.authenticated,
         clientWidth: state.app.clientWidth,
+        word: state.app.activeWord
     };
 }
 

@@ -21,6 +21,8 @@ import ImageUploader from "../image_uploader"
 import qs from "qs";
 import * as _ from "lodash"
 
+
+
 class Block extends Component {
 
     state = {
@@ -44,15 +46,37 @@ class Block extends Component {
 
     componentDidUpdate = (prevprops) => {
         if(!_.isEqual(prevprops.word.blocks, this.props.word.blocks)) {
+
             let image = _.filter(this.props.word.blocks, {position: this.props.position});
             // console.log(image)
             if(image.length > 0) {
                 this.setState({
                     value: image[0].url
                 })
+            } else {
+                this.setState({
+                    value: ""
+                })
             }
         }
+
+        // console.log(this.getQueryParams().word,  this.props.word._id)
+
+        // if(this.getQueryParams().word !== this.props.word._id) {
+
+        //     let image = _.filter(this.props.word.blocks, {position: this.props.position});
+        //     // console.log(image)
+        //     if(image.length > 0) {
+        //         this.setState({
+        //             value: image[0].url
+        //         })
+        //     }
+        // }
     }
+
+    getQueryParams = () => {
+		return qs.parse(this.props.location.search.substring(1));
+    };
 
     handleInputChange = (value) => {
         this.setState({
