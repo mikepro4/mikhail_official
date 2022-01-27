@@ -71,165 +71,165 @@ class Word extends Component {
                             {/* <rect x="3" y="31" width="15" height="15" fill="white"/> */}
                             <foreignObject x="3" y="31" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={0} />
+                                    <Block position={1} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="15" y="29" width="15" height="15" fill="white"/> */}
                             <foreignObject x="15" y="29" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={1} />
+                                    <Block position={2} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="27" y="27" width="15" height="15" fill="white"/> */}
                             <foreignObject x="27" y="27" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={2} />
+                                    <Block position={3} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="39" y="25" width="15" height="15" fill="white"/> */}
                             <foreignObject x="39" y="25" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={3} />
+                                    <Block position={4} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="23" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="23" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={4} />
+                                    <Block position={5} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="63" y="20" width="15" height="15" fill="white"/> */}
                             <foreignObject x="63" y="20" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={5} />
+                                    <Block position={6} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="75" y="16" width="15" height="15" fill="white"/> */}
                             <foreignObject x="75" y="16" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={6} />
+                                    <Block position={7} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="87" y="12" width="15" height="15" fill="white"/> */}
                             <foreignObject x="87" y="12" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={7} />
+                                    <Block position={8} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="38" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="38" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={8} />
+                                    <Block position={9} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="53" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="53" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={9} />
+                                    <Block position={10} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="68" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="68" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={10} />
+                                    <Block position={11} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="98" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="98" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={11} />
+                                    <Block position={12} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="113" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="113" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={12} />
+                                    <Block position={13} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="128" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="128" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={13} />
+                                    <Block position={14} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="143" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="143" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={14} />
+                                    <Block position={15} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="158" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="158" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={15} />
+                                    <Block position={16} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="173" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="173" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={16} />
+                                    <Block position={17} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="51" y="188" width="15" height="15" fill="white"/> */}
                             <foreignObject x="51" y="188" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={17} />
+                                    <Block position={18} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="47" y="198" width="15" height="15" fill="white"/> */}
                             <foreignObject x="47" y="198" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={18} />
+                                    <Block position={19} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="33" y="201" width="15" height="15" fill="white"/> */}
                             <foreignObject x="33" y="201" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={19} />
+                                    <Block position={20} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="19" y="204" width="15" height="15" fill="white"/> */}
                             <foreignObject x="19" y="204" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={20} />
-                                </div>
-                            </foreignObject>
-                            {/* <rect y="83" width="15" height="15" fill="white"/> */}
-                            <foreignObject x="83" y="15" width="15" height="15">
-                                <div className="word-block-container">
                                     <Block position={21} />
                                 </div>
                             </foreignObject>
+                            {/* <rect y="83" width="15" height="15" fill="white"/> */}
+                            {/* <foreignObject x="83" y="15" width="15" height="15">
+                                <div className="word-block-container">
+                                    <Block position={22} />
+                                </div>
+                            </foreignObject> */}
                             {/* <rect x="15" y="83" width="15" height="15" fill="white"/> */}
                             <foreignObject x="15" y="83" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={22} />
+                                    <Block position={23} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="30" y="83" width="15" height="15" fill="white"/> */}
                             <foreignObject x="30" y="83" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={23} />
+                                    <Block position={24} />
                                 </div>
                             </foreignObject>
                             {/* <rect x="45" y="83" width="15" height="15" fill="white"/> */}
                             <foreignObject x="45" y="83" width="15" height="15">
                                 <div className="word-block-container">
-                                    <Block position={24} />
-                                </div>
-                            </foreignObject>
-                            {/* <rect x="51" y="83" width="15" height="15" fill="white"/> */}
-                            <foreignObject x="51" y="83" width="15" height="15">
-                                <div className="word-block-container">
                                     <Block position={25} />
                                 </div>
                             </foreignObject>
-                            {/* <rect x="60" y="83" width="15" height="15" fill="white"/> */}
+                            {/* <rect x="51" y="83" width="15" height="15" fill="white"/> */}
                             <foreignObject x="60" y="83" width="15" height="15">
                                 <div className="word-block-container">
                                     <Block position={26} />
                                 </div>
                             </foreignObject>
+                            {/* <rect x="60" y="83" width="15" height="15" fill="white"/> */}
+                            {/* <foreignObject x="60" y="83" width="15" height="15">
+                                <div className="word-block-container">
+                                    <Block position={26} />
+                                </div>
+                            </foreignObject> */}
                             {/* <rect x="75" y="83" width="15" height="15" fill="white"/> */}
                             <foreignObject x="75" y="83" width="15" height="15">
                                 <div className="word-block-container">

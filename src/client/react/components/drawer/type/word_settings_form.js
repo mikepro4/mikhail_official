@@ -23,6 +23,7 @@ import {
 
 
 import {
+    createWord,
     deleteWord,
 } from "../../../../redux/actions/wordsActions"
 
@@ -114,9 +115,39 @@ class WordSettingsForm extends Component {
                     className={"submit-button theme-" + this.props.theme}
                     loading={this.state.loading}
                     onClick={() => {
+
+                        let newWord = {
+                            ...this.props.word,
+                            metadata: {
+                                ...this.props.word.metadata,
+                                title: this.props.word.metadata.title + " copy"
+                            }
+                        }
                         this.setState({
                             loading: true
                         })
+                            this.props.createWord(newWord, (word) => {
+                            this.props.hideDrawer()
+                            this.setState({
+                                loading: false
+                            })
+
+                            this.props.history.push("/?word="+ word._id);
+                        })
+                    }}
+                        text="Duplicate"
+                    large="true"
+                />
+
+
+                <Button
+                    className={"submit-button theme-" + this.props.theme}
+                    loading={this.state.loading}
+                    onClick={() => {
+                        this.setState({
+                            loading: true
+                        })
+                           
                             this.props.deleteWord(this.props.word._id, () => {
                             this.props.hideDrawer()
                             this.setState({
@@ -158,7 +189,8 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
     deleteWord,
-    hideDrawer
+    hideDrawer,
+    createWord
 })(withRouter(WordSettingsForm));
 
   

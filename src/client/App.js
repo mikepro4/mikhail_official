@@ -18,16 +18,21 @@ import * as _ from "lodash"
 
 
 import { showDrawer } from "../client/redux/actions/appActions"
-import { loadWord } from "../client/redux/actions/wordsActions"
+import { loadWord, updateBlocks } from "../client/redux/actions/wordsActions"
 import { loadShape } from "../client/redux/actions/shapesActions"
+import { initSave } from "../client/redux/actions/blocksActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 
 import Player from "./react/components/player"
 import AudioPlayer from "./react/components/audioplayer"
 
+// if(prevprops.blocks.uploadDone !== this.props.blocks.uploadDone && this.props.blocks.uploadDone == true) {
+//             this.props.initSave()
+
 class App extends Component {
     state = {
-        appVisible: false
+        appVisible: false,
+        savingBlocks: false
     }
 
     componentDidMount() {
@@ -52,6 +57,19 @@ class App extends Component {
         if(this.props.word && this.props.word.metadata) {
             if(!_.isEqual(prevprops.word, this.props.word)) {
                 this.props.loadShape(this.props.word.metadata.shapeId)
+            }
+        }
+
+        if(prevprops.blocks.uploadDone !== this.props.blocks.uploadDone && this.props.blocks.uploadDone == true) {
+            if(this.props.blocks.status !== "saving") {
+                this.props.updateBlocks(
+                    this.props.word,
+                    this.props.blocks.updatedBlocks, 
+                    () => {
+                        
+                        this.props.loadWord(this.getQueryParams().word, (data) => {
+                    })
+                })
             }
         }
         
@@ -125,7 +143,8 @@ function mapStateToProps(state) {
         user: state.app.user,
         drawerType: state.app.drawerType,
         drawerOpen: state.app.drawerOpen,
-        word: state.app.activeWord
+        word: state.app.activeWord,
+        blocks: state.blocks
     };
 }
 
@@ -136,6 +155,8 @@ export default {
         clearCurrentUser,
         loadWord,
         showDrawer,
-        loadShape
+        loadShape,
+        initSave,
+        updateBlocks
     })(App))
 };

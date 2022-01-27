@@ -54,3 +54,14 @@ export const TRACK_PLAYING = "app/TRACK_PLAYING"
 export const SET_ANALYSER = "app/SET_ANALYSER"
 
 // =============================================================================
+
+// Blocks
+
+export const INIT_UPLOAD = "app/INIT_UPLOAD"
+export const ADD_BLOCK = "app/ADD_BLOCK"
+export const SAVE_BLOCKS_INIT = "app/SAVE_BLOCKS_INIT"
+export const SAVE_BLOCKS_DONE = "app/SAVE_BLOCKS_DONE"
+export const LOAD_SORTED_BLOCKS = "app/LOAD_SORTED_BLOCKS"
+export const CLEAR_SORTED_BLOCKS = "app/CLEAR_SORTED_BLOCKS"
+
+// =============================================================================

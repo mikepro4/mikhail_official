@@ -6,6 +6,10 @@ import update from "immutability-helper";
 
 import {
     LOAD_WORD,
+    SAVE_BLOCKS_INIT,
+    SAVE_BLOCKS_DONE,
+    LOAD_SORTED_BLOCKS,
+
 } from "./types";
 
 export const getMainWord = (success) => async (
@@ -74,6 +78,15 @@ export const loadWord = (id, success) => async (
             dispatch({
                 type: LOAD_WORD,
                 payload: response.data
+            });
+
+            dispatch({
+                type: LOAD_SORTED_BLOCKS,
+                payload: {
+                    type: "h",
+                    direction: "asc",
+                    originalBlocks: response.data.blocks
+                }
             });
         })
         .catch(() => {
@@ -190,43 +203,33 @@ export const updateWord = (word, data, success) => async (
 // ===========================================================================
 
 
-export const updateBlocks = (word, block, success) => async (
+export const updateBlocks = (word, blocks, success) => async (
     dispatch,
 	getState,
 	api
 ) => {
-
-
-    let newBlocks = []
-    if(!word.blocks || word.blocks.length == 0) {
-        newBlocks = [block]
-    } else {
-
-        let currentPosition = _.filter(word.blocks, { position: block.position})
-        console.log(currentPosition)
-        if(currentPosition.length > 0) {
-            let keyToDeactivateIndex = _.findIndex(word.blocks, currentPosition[0]);
-            newBlocks = update(word.blocks, {
-                $splice: [[keyToDeactivateIndex, 1, block]] 
-            })
-        } else {
-            newBlocks = _.concat(word.blocks, [block])
-        }
-
-        
-    }
+    
+    dispatch({
+        type: SAVE_BLOCKS_INIT
+    });
+    console.log(blocks)
 
     await api
         .post("/word/updateBlocks", { 
             wordId: word._id, 
-            blocks: newBlocks,
+            blocks: blocks,
         })
         .then(response => {
+            dispatch({
+                type: SAVE_BLOCKS_DONE
+            });
             if (success) {
                 success(response.data);
             }
         })
         .catch(() => {
         });
+
+    
 }
 

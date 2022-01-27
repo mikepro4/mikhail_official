@@ -10,6 +10,10 @@ import * as Vibrant from 'node-vibrant'
 import Dropzone from "react-dropzone";
 import axios from "axios";
 
+import { 
+    initUpload
+} from "../../../redux/actions/blocksActions"
+
 class Avatar extends Component {
 	state = {
 		imageUrl: "",
@@ -19,7 +23,11 @@ class Avatar extends Component {
 	handleDrop = files => {
         let current = files.count
 
-        console.log(files)
+        this.props.initUpload(
+            this.props.position,
+            this.props.word.blocks,
+            files
+        )
 		const uploaders = files.map((file,i) => {
             console.log(i)
 			// Progress
@@ -65,11 +73,15 @@ class Avatar extends Component {
                                 imageUrl: data.secure_url,
                                 editedAvatar: false
                             });
-                            this.props.onSuccess(data.secure_url, i, {
-                                h: h,
-                                s: s,
-                                l: l,
-                            });
+
+                            this.props.onSuccess(
+                                data.secure_url, 
+                                i, 
+                                {
+                                    h: h,
+                                    s: s,
+                                    l: l,
+                                });
                         }, 100)
                     })
 
@@ -123,6 +135,9 @@ class Avatar extends Component {
 }
 
 const mapStateToProps = state => ({
+    word: state.app.activeWord
 });
 
-export default withRouter(connect(mapStateToProps, {})(Avatar));
+export default withRouter(connect(mapStateToProps, {
+    initUpload
+})(Avatar));

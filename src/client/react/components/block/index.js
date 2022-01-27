@@ -21,38 +21,48 @@ import ImageUploader from "../image_uploader"
 import qs from "qs";
 import * as _ from "lodash"
 
-
+import { 
+    addBlock,
+    initSave
+} from "../../../redux/actions/blocksActions"
 
 class Block extends Component {
 
     state = {
         loading: false,
-        current: false
+        current: false,
+        saving: false
     }
 
     componentDidMount = () => {
-        // let image = _.filter(this.props.word.blocks, (block) => {
+        // let image = _.filter(this.props.sortedBlocks, (block) => {
         //     return block.position = this.props.position.toString()
         // })
 
-        let image = _.filter(this.props.word.blocks, {position: this.props.position});
+        // let image = _.filter(this.props.sortedBlocks, {position: this.props.position});
+        let image = this.props.sortedBlocks[this.props.position]
+        console.log(this.props.sortedBlocks[this.props.position])
         // console.log(image)
-        if(image.length > 0) {
+        if(image) {
             this.setState({
-                value: image[0].url
+                value: image.url
             })
         }
 
     }
 
     componentDidUpdate = (prevprops) => {
-        if(!_.isEqual(prevprops.word.blocks, this.props.word.blocks)) {
+        if(!_.isEqual(prevprops.sortedBlocks, this.props.sortedBlocks)) {
 
-            let image = _.filter(this.props.word.blocks, {position: this.props.position});
+            
+
+            // let image = _.filter(this.props.sortedBlocks, {position: this.props.position});
+            let image = this.props.sortedBlocks[this.props.position]
+            console.log(this.props.sortedBlocks, this.props.position)
             // console.log(image)
-            if(image.length > 0) {
+            if(image) {
                 this.setState({
-                    value: image[0].url
+                    value: image.url
                 })
             } else {
                 this.setState({
@@ -61,11 +71,38 @@ class Block extends Component {
             }
         }
 
+        if(prevprops.blocks.uploadDone !== this.props.blocks.uploadDone && this.props.blocks.uploadDone == true) {
+            // this.props.initSave()
+
+            
+
+                // setTimeout(() => {
+                //     if(this.props.blocks.status == "saving" && !this.state.saving) {
+                //         this.setState({
+                //             saving: true
+                //         })
+                //         this.props.updateBlocks(
+                //             this.props.word,
+                //             this.props.blocks.updatedBlocks, 
+                //             () => {
+                                
+                //                 this.props.loadWord(this.getQueryParams().word, (data) => {
+                //                     this.setState({
+                //                         saving: false
+                //                     })
+                //             })
+                //         })
+                //     }
+
+                // }, 100 )
+               
+        }
+
         // console.log(this.getQueryParams().word,  this.props.word._id)
 
         // if(this.getQueryParams().word !== this.props.word._id) {
 
-        //     let image = _.filter(this.props.word.blocks, {position: this.props.position});
+        //     let image = _.filter(this.props.sortedBlocks, {position: this.props.position});
         //     // console.log(image)
         //     if(image.length > 0) {
         //         this.setState({
@@ -86,20 +123,28 @@ class Block extends Component {
             })
     
         }
+
+        console.log(value, position, palette)
+
+        let newPosition
+
+        if(position == 0 ) {
+            newPosition = this.props.position
+        } else if(position > 0) {
+            newPosition = this.props.position + position
+        }
+
+        this.props.addBlock(
+            {
+                position: newPosition,
+                url: value,
+                palette: palette
+            }
+        )
       
        
 
-        this.props.updateBlocks(
-            this.props.word,
-            {
-                position: this.props.position + position,
-                url: value,
-                palette: palette
-            }, () => {
-
-                this.props.loadWord(this.getQueryParams().word, (data) => {
-                })
-            })
+        
     }
 
     getQueryParams = () => {
@@ -117,6 +162,7 @@ class Block extends Component {
                     canUpload={true}
                     onSuccess={(value, position, palette) => this.handleInputChange(value, position, palette)}
                     imageUrl={this.state.value}
+                    position={this.props.position}
                 />
             </div>
 
@@ -131,10 +177,14 @@ function mapStateToProps(state) {
         user: state.app.user,
         authenticated: state.auth.authenticated,
         word: state.app.activeWord,
+        blocks: state.blocks,
+        sortedBlocks: state.app.sortedBlocks
 	};
 }
 
 export default withRouter(connect(mapStateToProps, {
     updateBlocks,
-    loadWord
+    loadWord,
+    addBlock,
+    initSave
 })(Block));

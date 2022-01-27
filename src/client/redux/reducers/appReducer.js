@@ -16,7 +16,9 @@ import {
     ACTIVATE_KEY,
     DEACTIVATE_KEY,
     LOAD_WORD,
-    LOAD_SHAPE
+    LOAD_SHAPE,
+    LOAD_SORTED_BLOCKS,
+    CLEAR_SORTED_BLOCKS
 } from "../actions/types";
 
 export const initialState = {
@@ -34,7 +36,8 @@ export const initialState = {
     drawerData: {},
     activeKeys: [],
     activeWord: {},
-    activeShape: {}
+    activeShape: {},
+    sortedBlocks: []
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -148,7 +151,24 @@ export const appReducer = (state = initialState, action) => {
                     ...state
                 }
             }
-            
+        case LOAD_SORTED_BLOCKS:
+            let type = action.payload.type
+            let direction = action.payload.direction
+            let originalBlocks = action.payload.originalBlocks
+            // console.log(type, direction, originalBlocks)
+
+            let sortedBlocks = _.orderBy(originalBlocks, block => block.palette.h, ['asc']);
+            console.log(sortedBlocks)
+
+            return {
+                ...state,
+                sortedBlocks: sortedBlocks
+            }
+        case CLEAR_SORTED_BLOCKS: 
+            return {
+                ...state,
+                sortedBlocks: []
+            }
 		default:
 			return state;
 	}
