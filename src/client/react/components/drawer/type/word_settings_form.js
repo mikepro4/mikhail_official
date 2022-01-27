@@ -73,6 +73,12 @@ class WordSettingsForm extends Component {
                     title="Title" placeholder="Title"
                 />
 
+                <Field
+                    name="shapeId"
+                    component={Input}
+                    title="Shape ID" placeholder="Shape ID"
+                />
+
                 {this.renderBlocks()}
                
 

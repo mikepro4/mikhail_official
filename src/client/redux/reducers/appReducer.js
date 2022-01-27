@@ -15,7 +15,8 @@ import {
     HIDE_DRAWER,
     ACTIVATE_KEY,
     DEACTIVATE_KEY,
-    LOAD_WORD
+    LOAD_WORD,
+    LOAD_SHAPE
 } from "../actions/types";
 
 export const initialState = {
@@ -32,7 +33,8 @@ export const initialState = {
     drawerType: null,
     drawerData: {},
     activeKeys: [],
-    activeWord: {}
+    activeWord: {},
+    activeShape: {}
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -41,6 +43,11 @@ export const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeWord: action.payload
+            }
+        case LOAD_SHAPE:
+            return {
+                ...state,
+                activeShape: action.payload
             }
         case DEMO_ON:
 			return {

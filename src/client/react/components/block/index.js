@@ -33,7 +33,7 @@ class Block extends Component {
         // })
 
         let image = _.filter(this.props.word.blocks, {position: this.props.position});
-        console.log(image)
+        // console.log(image)
         if(image.length > 0) {
             this.setState({
                 value: image[0].url
@@ -45,7 +45,7 @@ class Block extends Component {
     componentDidUpdate = (prevprops) => {
         if(!_.isEqual(prevprops.word.blocks, this.props.word.blocks)) {
             let image = _.filter(this.props.word.blocks, {position: this.props.position});
-            console.log(image)
+            // console.log(image)
             if(image.length > 0) {
                 this.setState({
                     value: image[0].url

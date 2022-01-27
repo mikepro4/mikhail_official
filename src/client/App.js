@@ -18,6 +18,7 @@ import * as _ from "lodash"
 
 import { showDrawer } from "../client/redux/actions/appActions"
 import { loadWord } from "../client/redux/actions/wordsActions"
+import { loadShape } from "../client/redux/actions/shapesActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 
 class App extends Component {
@@ -44,6 +45,12 @@ class App extends Component {
         if(!_.isEqual(prevprops.location.search, this.props.location.search)) {
             this.loadWord()
         }
+        if(this.props.word && this.props.word.metadata) {
+            if(!_.isEqual(prevprops.word, this.props.word)) {
+                this.props.loadShape(this.props.word.metadata.shapeId)
+            }
+        }
+        
     }
 
     getQueryParams = () => {
@@ -96,7 +103,8 @@ function mapStateToProps(state) {
         appReducer: state.appReducer,
         user: state.app.user,
         drawerType: state.app.drawerType,
-        drawerOpen: state.app.drawerOpen
+        drawerOpen: state.app.drawerOpen,
+        word: state.app.activeWord
     };
 }
 
@@ -106,6 +114,7 @@ export default {
         fetchCurrentUser, 
         clearCurrentUser,
         loadWord,
-        showDrawer
+        showDrawer,
+        loadShape
     })(App))
 };

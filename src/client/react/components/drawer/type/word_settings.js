@@ -58,15 +58,16 @@ class WordSettings extends Component {
             <div className={"app-drawer-content-container standard-drawer word-settings-drawer theme-" + this.props.theme}>
                 
                 <div className={"details-container theme-" + this.props.theme}>
-                    <div className="drawer-header">
+                    {/* <div className="drawer-header">
                         Title: {this.props.word.metadata.title}
-                    </div>
+                    </div> */}
 
                     <WordSettingsForm 
                         enableReinitialize="true"
                         initialValues={
                             {
                                 title: this.props.word.metadata.title,
+                                shapeId: this.props.word.metadata.shapeId
                             }
                         }
                         loading={this.state.loading}
@@ -76,7 +77,8 @@ class WordSettings extends Component {
                             this.props.updateWord(
                                 this.props.word,
                                 {
-                                    title: values.title
+                                    title: values.title,
+                                    shapeId: values.shapeId
                                 },
                                 () => {
                                     this.props.loadWord(this.props.word._id)

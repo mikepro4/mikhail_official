@@ -32,6 +32,7 @@ export const SCROLL_TO_RESET = "app/SCROLL_TO_RESET";
 export const UPDATE_COLLECTION = "app/UPDATE_COLLECTION"
 
 export const LOAD_WORD = "app/LOAD_WORD"
+export const LOAD_SHAPE = "app/LOAD_SHAPE"
 
 export const SHOW_DRAWER = "app/SHOW_DRAWER"
 export const HIDE_DRAWER = "app/HIDE_DRAWER"

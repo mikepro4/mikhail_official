@@ -159,7 +159,8 @@ export const updateWord = (word, data, success) => async (
     let newMetadata = _.merge({}, word.metadata, {
         title: data.title,
         main: data.main,
-        mainDate: date
+        mainDate: date,
+        shapeId: data.shapeId
     })
 
 
