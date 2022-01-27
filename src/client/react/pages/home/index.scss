@@ -34,19 +34,18 @@
             opacity: 0;
             animation: fadeIn 0.2s linear forwards;
             position: relative;
-        }
-    }
 
-   
+            @for $i from 1 through 200 {
+                &:nth-child(#{$i}) {
+                    animation-delay: $i * 0.001s;
+                }
+            }
+        }
+
+    }
 }
 
-@for $i from 1 through 200 {
-    foreignObject{
-      &:nth-child(#{$i}) {
-        animation-delay: $i * 0.03s;
-      }
-    }
-  }
+
 
 
 .word-container {

@@ -123,13 +123,13 @@ export const searchWords = (type, identifier, offset, limit, query, success) => 
 // ===========================================================================
 
 
-export const deleteWord = (wordId, wordItem, success) => async (
+export const deleteWord = (wordId, success) => async (
     dispatch,
 	getState,
 	api
 ) => {
     await api
-        .post("/words/delete", { wordId: wordId, word: wordItem })
+        .post("/words/delete", { wordId: wordId })
         .then(response => {
             if (success) {
                 success(response.data);

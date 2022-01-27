@@ -5,6 +5,7 @@ import { Form } from "redux-form";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Intent, Spinner } from "@blueprintjs/core";
+import { withRouter } from "react-router-dom";
 
 import Input from "../../form/BladeInput";
 import Textarea from "../../form/BladeTextarea";
@@ -16,7 +17,20 @@ import ColorPicker from "../../form/ColorPicker";
 import Block from "../../block"
 
 
+import {
+    hideDrawer,
+} from "../../../../redux/actions/appActions"
+
+
+import {
+    deleteWord,
+} from "../../../../redux/actions/wordsActions"
+
 class WordSettingsForm extends Component {
+    
+    state = {
+        loading: false
+    }
 
     renderBlock(i) {
         return(
@@ -96,6 +110,26 @@ class WordSettingsForm extends Component {
                     large="true"
                 />
 
+                <Button
+                    className={"submit-button theme-" + this.props.theme}
+                    loading={this.state.loading}
+                    onClick={() => {
+                        this.setState({
+                            loading: true
+                        })
+                            this.props.deleteWord(this.props.word._id, () => {
+                            this.props.hideDrawer()
+                            this.setState({
+                                loading: false
+                            })
+
+                            this.props.history.push("/");
+                        })
+                    }}
+                        text="Delete"
+                    large="true"
+                />
+
                
             </Form>
 		);
@@ -118,10 +152,13 @@ WordSettingsForm = reduxForm({
 })(WordSettingsForm);
 
 const mapStateToProps = state => ({
-    user: state.app.user
+    user: state.app.user,
+    word: state.app.activeWord
 });
 
 export default connect(mapStateToProps, {
-})(WordSettingsForm);
+    deleteWord,
+    hideDrawer
+})(withRouter(WordSettingsForm));
 
   
