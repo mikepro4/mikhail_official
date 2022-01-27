@@ -10,6 +10,7 @@ FocusStyleManager.onlyShowFocusOnTabs();
 import Header from "./react/components/header"
 import Drawer from "./react/components/drawer"
 import Scroll from "./react/components/scroll"
+import Viz from "./react/components/viz"
 import SettingsIcon from "./react/components/icons/settings"
 
 import qs from "qs";
@@ -91,6 +92,8 @@ class App extends Component {
                 <div className="main-settings" onClick={() =>  this.props.showDrawer("word-settings")}>
                     <SettingsIcon />
                 </div>
+
+                <Viz/>
 
                 {/* <Scroll/> */}
                 
