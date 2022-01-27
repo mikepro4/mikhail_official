@@ -79,6 +79,12 @@ class WordSettingsForm extends Component {
                     title="Shape ID" placeholder="Shape ID"
                 />
 
+                <Field
+                    name="audioUrl"
+                    component={Input}
+                    title="Audio URL" placeholder="Audio URL"
+                />
+
                 {this.renderBlocks()}
                
 

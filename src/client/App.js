@@ -22,6 +22,9 @@ import { loadWord } from "../client/redux/actions/wordsActions"
 import { loadShape } from "../client/redux/actions/shapesActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 
+import Player from "./react/components/player"
+import AudioPlayer from "./react/components/audioplayer"
+
 class App extends Component {
     state = {
         appVisible: false
@@ -93,7 +96,21 @@ class App extends Component {
                     <SettingsIcon />
                 </div>
 
-                {this.props.word && this.props.word.metadata && this.props.word.metadata.shapeId ? <Viz/> : ""}
+                <div 
+                    className="viz-wrapper"
+                    className={classNames({
+                        "viz-wrapper": true,
+                        "active": this.props.word && this.props.word.metadata && this.props.word.metadata.shapeId
+                    })}
+                >
+                    <Viz/>
+                </div>
+
+                <div className="new-player">
+                    {!this.props.demoMode &&<Player/> }
+                    <AudioPlayer/>
+                    
+                </div>
 
 
                 {/* <Scroll/> */}

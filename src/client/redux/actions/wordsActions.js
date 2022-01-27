@@ -160,7 +160,8 @@ export const updateWord = (word, data, success) => async (
         title: data.title,
         main: data.main,
         mainDate: date,
-        shapeId: data.shapeId
+        shapeId: data.shapeId,
+        audioUrl: data.audioUrl
     })
 
 

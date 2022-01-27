@@ -67,7 +67,8 @@ class WordSettings extends Component {
                         initialValues={
                             {
                                 title: this.props.word.metadata.title,
-                                shapeId: this.props.word.metadata.shapeId
+                                shapeId: this.props.word.metadata.shapeId,
+                                audioUrl: this.props.word.metadata.audioUrl,
                             }
                         }
                         loading={this.state.loading}
@@ -78,7 +79,8 @@ class WordSettings extends Component {
                                 this.props.word,
                                 {
                                     title: values.title,
-                                    shapeId: values.shapeId
+                                    shapeId: values.shapeId,
+                                    audioUrl: values.audioUrl
                                 },
                                 () => {
                                     this.props.loadWord(this.props.word._id)

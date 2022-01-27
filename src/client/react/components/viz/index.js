@@ -410,22 +410,22 @@ class Viz extends Component {
             let freqData = []
             let soundModifier = 1
     
-            // if(this.props.player.analyser) {
-            //     freqData = new Uint8Array(this.props.player.analyser.frequencyBinCount)
-            //     this.props.player.analyser.getByteFrequencyData(freqData)
-            // }
+            if(this.props.player.analyser) {
+                freqData = new Uint8Array(this.props.player.analyser.frequencyBinCount)
+                this.props.player.analyser.getByteFrequencyData(freqData)
+            }
     
             
     
             for (let i = 0; i < points.length; i++) {
     
-                // if(this.props.player.analyser && soundModifier) {
-                //     soundModifier = freqData[this.getPointIterator(i)]/1000
+                if(this.props.player.analyser && soundModifier) {
+                    soundModifier = freqData[this.getPointIterator(i)]/1000
             
-                //     if(soundModifier == 0) {
-                //       soundModifier = 1
-                //     }
-                // }
+                    if(soundModifier == 0) {
+                      soundModifier = 1
+                    }
+                }
     
                 let point = points[i];
 
@@ -632,7 +632,8 @@ function mapStateToProps(state) {
 	return {
 		location: state.router.location,
         app: state.app,
-        shape: state.app.activeShape
+        shape: state.app.activeShape,
+        player: state.player
 	};
 }
 

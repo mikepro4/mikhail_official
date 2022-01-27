@@ -27,7 +27,7 @@ class Header extends Component {
             this.setState({
                 showMenuBars: true,
             })
-        }, 500)
+        }, 1)
 
         // this.setState({
         //     showMenuBars: true,
@@ -240,7 +240,7 @@ class Header extends Component {
                 this.setState({
                     showWord: true,
                 })
-            }, 100)
+            }, 1)
             document.body.classList.add("no-scroll")
         }
 
