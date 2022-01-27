@@ -79,20 +79,22 @@ class Block extends Component {
 		return qs.parse(this.props.location.search.substring(1));
     };
 
-    handleInputChange = (value, position) => {
+    handleInputChange = (value, position, palette) => {
         if(position == 0) {
             this.setState({
                 value: value
             })
     
         }
-        let hack = this.props.position + position
+      
+       
 
         this.props.updateBlocks(
             this.props.word,
             {
-                position: hack = 58.1 ? 58 ? this.props.position + position ,
-                url: value
+                position: this.props.position + position,
+                url: value,
+                palette: palette
             }, () => {
 
                 this.props.loadWord(this.getQueryParams().word, (data) => {
@@ -113,7 +115,7 @@ class Block extends Component {
 
                <ImageUploader
                     canUpload={true}
-                    onSuccess={(value, position) => this.handleInputChange(value, position)}
+                    onSuccess={(value, position, palette) => this.handleInputChange(value, position, palette)}
                     imageUrl={this.state.value}
                 />
             </div>

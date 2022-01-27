@@ -6,28 +6,34 @@ import * as _ from "lodash";
 import update from "immutability-helper";
 
 class Viz extends Component {
-	state = {
-        width: 0,
-        height: 0,
-        radius: 0,
-        rotate: 0,
-        rotate_speed: 0,
-        friction: 0,
-        speed: 0,
-        step: 0,
-        freq: 0,
-        bold_rate: 0,
-        math: "sin",
-        pointSize: 0,
-        pointOpacity: 0,
-        x: 0,
-        y: 0,
-        paused: false,
-        visible: false,
-        timeInterval: null,
-        totalPointCount: 1024,
-        points: []
-    };
+	
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            width: 0,
+            height: 0,
+            radius: 0,
+            rotate: 0,
+            rotate_speed: 0,
+            friction: 0,
+            speed: 0,
+            step: 0,
+            freq: 0,
+            bold_rate: 0,
+            math: "sin",
+            pointSize: 0,
+            pointOpacity: 0,
+            x: 0,
+            y: 0,
+            paused: false,
+            visible: false,
+            timeInterval: null,
+            totalPointCount: 1024,
+            points: []
+        };
+
+    }
 
 	componentDidMount = () => {
         if(this.props.shape) {
@@ -194,36 +200,38 @@ class Viz extends Component {
     updateDimensions = (callback) => {
         let rect = this.refs.viz_container.getBoundingClientRect();
 
-        let scale = 1
+        if(rect) {
+            let scale = 1
 
-        if(this.props.defaultViz) {
-            scale = 0.6
-        }
-        if(this.props.app.clientWidth > 1000) {
-            this.setState({
-                width: rect.width * 2,
-                height: rect.height * 2,
-                radius: (rect.width * 2) / 7 * scale,
-                x: (rect.width * 2) / 2,
-                y: (rect.height * 2) / 2
-            }, () => {
-                if(callback) {
-                    callback()
-                }
-            })
-        } else {
-
+            if(this.props.defaultViz) {
+                scale = 0.6
+            }
+            if(this.props.app.clientWidth > 1000) {
                 this.setState({
-                width: rect.width * 2,
-                height: rect.height * 2,
-                radius: (rect.width * 2) / 4 * scale,
-                x: (rect.width * 2) / 2,
-                y: (rect.height * 2) / 2
-            }, () => {
-                if(callback) {
-                    callback()
-                }
-            })
+                    width: rect.width * 2,
+                    height: rect.height * 2,
+                    radius: (rect.width * 2) / 7 * scale,
+                    x: (rect.width * 2) / 2,
+                    y: (rect.height * 2) / 2
+                }, () => {
+                    if(callback) {
+                        callback()
+                    }
+                })
+            } else {
+    
+                    this.setState({
+                    width: rect.width * 2,
+                    height: rect.height * 2,
+                    radius: (rect.width * 2) / 4 * scale,
+                    x: (rect.width * 2) / 2,
+                    y: (rect.height * 2) / 2
+                }, () => {
+                    if(callback) {
+                        callback()
+                    }
+                })
+            }
         }
     
         

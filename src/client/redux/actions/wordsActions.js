@@ -214,7 +214,7 @@ export const updateBlocks = (word, block, success) => async (
     await api
         .post("/word/updateBlocks", { 
             wordId: word._id, 
-            blocks: newBlocks
+            blocks: newBlocks,
         })
         .then(response => {
             if (success) {

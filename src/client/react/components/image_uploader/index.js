@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import qs from "qs";
 import * as _ from "lodash";
 import classNames from "classnames";
+import * as Vibrant from 'node-vibrant'
 
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -42,6 +43,8 @@ class Avatar extends Component {
 			formData.append("api_key", "DhgKXiXYQqQj0nEB74w_70HfPWI"); // Replace API key with your own Cloudinary key
 			formData.append("timestamp", (Date.now() / 1000) | 0);
 
+          
+
 			return axios
 				.post(
 					"https://api.cloudinary.com/v1_1/dcdnt/image/upload",
@@ -51,11 +54,28 @@ class Avatar extends Component {
 				.then(response => {
 					const data = response.data;
 					const fileURL = data.secure_url;
-					this.setState({
-						imageUrl: data.secure_url,
-						editedAvatar: false
-					});
-					this.props.onSuccess(data.secure_url, i);
+                    let palette = ""
+
+                    Vibrant.from(data.secure_url).getPalette((err, palette) => {
+                        palette = palette
+                        let [h, s, l] = palette.DarkVibrant.getHsl()
+                        console.log(h, s, l)
+                        setTimeout(() => {
+                            this.setState({
+                                imageUrl: data.secure_url,
+                                editedAvatar: false
+                            });
+                            this.props.onSuccess(data.secure_url, i, {
+                                h: h,
+                                s: s,
+                                l: l,
+                            });
+                        }, 100)
+                    })
+
+                  
+
+					
 				});
 		});
 	};
