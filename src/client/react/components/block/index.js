@@ -80,7 +80,7 @@ class Block extends Component {
 	render() {
         return (
             <div className="block-container">
-               <div className="block-position">{this.props.position}</div>
+               {/* <div className="block-position">{this.props.position}</div> */}
 
                <ImageUploader
                     canUpload={true}

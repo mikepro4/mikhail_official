@@ -25,11 +25,15 @@
         // -webkit-transform: translateZ(0); /* Chrome, Safari, Opera */
         // transform: translateZ(0);
         // -webkit-perspective: 1000;
-        transform: scale(5);
+
+        @media only screen and (max-width: $mobile) {
+            transform: scale(10);
+        }
 
         foreignObject {
             opacity: 0;
             animation: fadeIn 0.2s linear forwards;
+            position: relative;
         }
     }
 
@@ -54,6 +58,21 @@
     // transform-origin: 0 0;
     // align-items: center;
     // justify-content: center;
-    height: 100%;
-    transform: scale(0.3);
+    @media only screen and (max-width: $mobile) {
+        position: relative;
+        top: 20px;
+        height: 100%;
+        transform: scale(0.21);
+    }
+}
+
+.word-block-container {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    background: #505050;
+
+    .empty-avatar-headline {
+        display: none;
+    }
 }
