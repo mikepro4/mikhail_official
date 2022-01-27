@@ -26,7 +26,8 @@ import * as _ from "lodash"
 class Block extends Component {
 
     state = {
-        loading: false
+        loading: false,
+        current: false
     }
 
     componentDidMount = () => {
@@ -78,15 +79,19 @@ class Block extends Component {
 		return qs.parse(this.props.location.search.substring(1));
     };
 
-    handleInputChange = (value) => {
-        this.setState({
-            value: value
-        })
+    handleInputChange = (value, position) => {
+        if(position == 0) {
+            this.setState({
+                value: value
+            })
+    
+        }
+        let hack = this.props.position + position
 
         this.props.updateBlocks(
             this.props.word,
             {
-                position: this.props.position,
+                position: hack = 58.1 ? 58 ? this.props.position + position ,
                 url: value
             }, () => {
 
@@ -108,7 +113,7 @@ class Block extends Component {
 
                <ImageUploader
                     canUpload={true}
-                    onSuccess={(value) => this.handleInputChange(value)}
+                    onSuccess={(value, position) => this.handleInputChange(value, position)}
                     imageUrl={this.state.value}
                 />
             </div>

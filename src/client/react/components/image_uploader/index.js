@@ -16,7 +16,11 @@ class Avatar extends Component {
 	};
 
 	handleDrop = files => {
-		const uploaders = files.map(file => {
+        let current = files.count
+
+        console.log(files)
+		const uploaders = files.map((file,i) => {
+            console.log(i)
 			// Progress
 			var config = {
 				onUploadProgress: function(progressEvent) {
@@ -51,7 +55,7 @@ class Avatar extends Component {
 						imageUrl: data.secure_url,
 						editedAvatar: false
 					});
-					this.props.onSuccess(data.secure_url);
+					this.props.onSuccess(data.secure_url, i);
 				});
 		});
 	};
