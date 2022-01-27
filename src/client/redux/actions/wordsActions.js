@@ -156,14 +156,19 @@ export const updateWord = (word, data, success) => async (
         date = null
     }
 
-    let newMetadata = _.merge({}, word.metadata, {
-        title: data.title,
-        main: data.main,
-        mainDate: date,
-        shapeId: data.shapeId,
-        audioUrl: data.audioUrl
-    })
+    // let newMetadata = _.merge({}, word.metadata, {
+    //     title: data.title,
+    //     main: data.main,
+    //     mainDate: date,
+    //     shapeId: data.shapeId,
+    //     audioUrl: data.audioUrl
+    // })
 
+
+    let newMetadata = {
+        ...word.metadata,
+        ...data
+    }
 
     await api
         .post("/word/update", { 

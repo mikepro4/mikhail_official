@@ -192,45 +192,50 @@ class Viz extends Component {
 
 
 	startViz = () => {
-        this.generatePoints()
-        this.updateDimensions(this.updateViz)
+        if(this.props.shape && this.props.word && this.props.word.metadata && this.props.word.metadata.shapeId) {
+            this.generatePoints()
+            this.updateDimensions(this.updateViz)
+        }
+        
     }
 
     
     updateDimensions = (callback) => {
-        let rect = this.refs.viz_container.getBoundingClientRect();
+        if(this.props.shape && this.props.word && this.props.word.metadata && this.props.word.metadata.shapeId) {
+            let rect = this.refs.viz_container.getBoundingClientRect();
 
-        if(rect) {
-            let scale = 1
+            if(rect) {
+                let scale = 1
 
-            if(this.props.defaultViz) {
-                scale = 0.6
-            }
-            if(this.props.app.clientWidth > 1000) {
-                this.setState({
-                    width: rect.width * 2,
-                    height: rect.height * 2,
-                    radius: (rect.width * 2) / 7 * scale,
-                    x: (rect.width * 2) / 2,
-                    y: (rect.height * 2) / 2
-                }, () => {
-                    if(callback) {
-                        callback()
-                    }
-                })
-            } else {
-    
+                if(this.props.defaultViz) {
+                    scale = 0.6
+                }
+                if(this.props.app.clientWidth > 1000) {
                     this.setState({
-                    width: rect.width * 2,
-                    height: rect.height * 2,
-                    radius: (rect.width * 2) / 4 * scale,
-                    x: (rect.width * 2) / 2,
-                    y: (rect.height * 2) / 2
-                }, () => {
-                    if(callback) {
-                        callback()
-                    }
-                })
+                        width: rect.width * 2,
+                        height: rect.height * 2,
+                        radius: (rect.width * 2) / 7 * scale,
+                        x: (rect.width * 2) / 2,
+                        y: (rect.height * 2) / 2
+                    }, () => {
+                        if(callback) {
+                            callback()
+                        }
+                    })
+                } else {
+        
+                        this.setState({
+                        width: rect.width * 2,
+                        height: rect.height * 2,
+                        radius: (rect.width * 2) / 4 * scale,
+                        x: (rect.width * 2) / 2,
+                        y: (rect.height * 2) / 2
+                    }, () => {
+                        if(callback) {
+                            callback()
+                        }
+                    })
+                }
             }
         }
     
@@ -641,7 +646,8 @@ function mapStateToProps(state) {
 		location: state.router.location,
         app: state.app,
         shape: state.app.activeShape,
-        player: state.player
+        player: state.player,
+        word: state.app.activeWord
 	};
 }
 

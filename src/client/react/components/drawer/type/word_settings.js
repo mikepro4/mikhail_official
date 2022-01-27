@@ -53,7 +53,6 @@ class WordSettings extends Component {
 
 
 	render() {
-        console.log(this.props.word)
         return (
             <div className={"app-drawer-content-container standard-drawer word-settings-drawer theme-" + this.props.theme}>
                 
@@ -65,11 +64,7 @@ class WordSettings extends Component {
                     <WordSettingsForm 
                         enableReinitialize="true"
                         initialValues={
-                            {
-                                title: this.props.word.metadata.title,
-                                shapeId: this.props.word.metadata.shapeId,
-                                audioUrl: this.props.word.metadata.audioUrl,
-                            }
+                            this.props.word.metadata
                         }
                         loading={this.state.loading}
                         onSubmit={this.handleFormSubmit.bind(this)}
@@ -77,11 +72,7 @@ class WordSettings extends Component {
                         onChange={values => {
                             this.props.updateWord(
                                 this.props.word,
-                                {
-                                    title: values.title,
-                                    shapeId: values.shapeId,
-                                    audioUrl: values.audioUrl
-                                },
+                                values,
                                 () => {
                                     this.props.loadWord(this.props.word._id)
                                 }

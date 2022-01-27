@@ -20,7 +20,7 @@
 }
 
 .viz-wrapper {
-    opacity: 0;
+    opacity: 0.01;
     transition: all 1s ease;
 
     &.active {
