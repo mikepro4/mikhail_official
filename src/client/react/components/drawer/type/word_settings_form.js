@@ -45,7 +45,7 @@ class WordSettingsForm extends Component {
 
         let blocks = []
 
-        for (var i = 0; i < blocksCount; i++) {
+        for (var i = 1; i < blocksCount; i++) {
             blocks.push(this.renderBlock(i))
         } 
 
@@ -123,6 +123,10 @@ class WordSettingsForm extends Component {
                     label="Sort by:"
                 />   
 
+                     
+
+                {this.renderBlocks()}
+
                 <Button
                     className={"submit-button theme-" + this.props.theme}
                     loading={this.state.loading}
@@ -131,9 +135,7 @@ class WordSettingsForm extends Component {
                     }}
                         text="Convert To Positions"
                     large="true"
-                />           
-
-                {this.renderBlocks()}
+                />      
                
 
                 <Button
@@ -154,6 +156,7 @@ class WordSettingsForm extends Component {
                             metadata: {
                                 ...this.props.word.metadata,
                                 title: this.props.word.metadata.title + " copy"
+                                // createdAt: new Date()
                             },
                             blocks: this.props.sortedBlocks
                         }

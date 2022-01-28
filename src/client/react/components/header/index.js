@@ -445,7 +445,7 @@ class Header extends Component {
                                     this.hideMenu()
                                 }
                         }}>
-                            Mikhail Proniushkin
+                            生日快乐宝贝
                         </Link>
 
                         {this.renderStatus()}

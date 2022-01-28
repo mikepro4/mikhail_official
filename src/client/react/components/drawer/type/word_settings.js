@@ -18,15 +18,26 @@ import {
     updateWord,
     loadWord,
     createWord,
+    deleteWord
 } from "../../../../redux/actions/wordsActions"
 
 import WordSettingsForm from "./word_settings_form"
 
 class WordSettings extends Component {
 
-    state = {
-        loading: false
+    
+    
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loading: false
+        }
+    
+        this.debouncedOnChange = _.debounce(this.handleFormSubmit, 1000);
     }
+    
 
     handleFormSubmit(data) {
         console.log(data)
@@ -36,7 +47,7 @@ class WordSettings extends Component {
         })
 
         this.props.updateWord(this.props.word, data, () => {
-            this.props.hideDrawer()
+            // this.props.hideDrawer()
             this.setState({
                 loading: false
             })
@@ -69,15 +80,7 @@ class WordSettings extends Component {
                         loading={this.state.loading}
                         onSubmit={this.handleFormSubmit.bind(this)}
                         theme={this.props.theme}
-                        onChange={values => {
-                            this.props.updateWord(
-                                this.props.word,
-                                values,
-                                () => {
-                                    this.props.loadWord(this.props.word._id)
-                                }
-                            )
-                        }}
+                        onChange={this.debouncedOnChange.bind(this)}
                     />
 
                 </div>
@@ -102,5 +105,5 @@ export default withRouter(connect(mapStateToProps, {
     updateWord,
     loadWord,
     createWord,
-    
+    deleteWord
 })(WordSettings));
