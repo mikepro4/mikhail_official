@@ -25,7 +25,7 @@ class Avatar extends Component {
 
         this.props.initUpload(
             this.props.position,
-            this.props.word.blocks,
+            this.props.sortedBlocks,
             files
         )
 		const uploaders = files.map((file,i) => {
@@ -76,7 +76,7 @@ class Avatar extends Component {
 
                             this.props.onSuccess(
                                 data.secure_url, 
-                                i, 
+                                i+1, 
                                 {
                                     h: h,
                                     s: s,
@@ -135,7 +135,8 @@ class Avatar extends Component {
 }
 
 const mapStateToProps = state => ({
-    word: state.app.activeWord
+    word: state.app.activeWord,
+    sortedBlocks: state.app.sortedBlocks
 });
 
 export default withRouter(connect(mapStateToProps, {

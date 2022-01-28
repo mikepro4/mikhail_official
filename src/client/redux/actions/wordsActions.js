@@ -83,8 +83,8 @@ export const loadWord = (id, success) => async (
             dispatch({
                 type: LOAD_SORTED_BLOCKS,
                 payload: {
-                    type: "h",
-                    direction: "asc",
+                    sortBy: response.data.metadata.sortBy,
+                    sortByDirection: response.data.metadata.sortByDirection,
                     originalBlocks: response.data.blocks
                 }
             });
@@ -200,9 +200,6 @@ export const updateWord = (word, data, success) => async (
 
 // ===========================================================================
 
-// ===========================================================================
-
-
 export const updateBlocks = (word, blocks, success) => async (
     dispatch,
 	getState,
@@ -232,4 +229,45 @@ export const updateBlocks = (word, blocks, success) => async (
 
     
 }
+
+// ===========================================================================
+
+
+export const convertToPositions = (word, sortedBlocks, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    
+    // console.log(word, sortedBlocks)
+
+    let newBlocks = []
+
+    newBlocks = sortedBlocks.map((block, i) => {
+        return {
+            ...block,
+            position: i+1
+        }
+    })
+    console.log(newBlocks)
+    await api
+        .post("/word/updateBlocks", { 
+            wordId: word._id, 
+            blocks: newBlocks,
+        })
+        .then(response => {
+            dispatch({
+                type: SAVE_BLOCKS_DONE
+            });
+            if (success) {
+                success(response.data);
+            }
+        })
+        .catch(() => {
+        });
+
+    
+}
+
+
 

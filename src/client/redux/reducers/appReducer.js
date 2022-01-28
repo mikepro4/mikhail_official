@@ -152,13 +152,30 @@ export const appReducer = (state = initialState, action) => {
                 }
             }
         case LOAD_SORTED_BLOCKS:
-            let type = action.payload.type
-            let direction = action.payload.direction
+            let sortBy = action.payload.sortBy
+            let direction = action.payload.sortByDirection
             let originalBlocks = action.payload.originalBlocks
             // console.log(type, direction, originalBlocks)
+            // let sortedBlocks = _.orderBy(originalBlocks, block => block.palette.h, [direction]);
+            // console.log(sortedBlocks)
+            let sortedBlocks = []
+            if(sortBy == "position") {
+                sortedBlocks = _.orderBy(originalBlocks, block => block.position, [direction]); 
+            }
 
-            let sortedBlocks = _.orderBy(originalBlocks, block => block.palette.h, ['asc']);
-            console.log(sortedBlocks)
+            if(sortBy == "h") {
+                sortedBlocks = _.orderBy(originalBlocks, block => block.palette.h, [direction]);
+            }
+
+            if(sortBy == "s") {
+                sortedBlocks = _.orderBy(originalBlocks, block => block.palette.s, [direction]);
+            }
+
+            if(sortBy == "b") {
+                sortedBlocks = _.orderBy(originalBlocks, block => block.palette.b, [direction]);
+            }
+
+            // console.log(block.position, direction)
 
             return {
                 ...state,

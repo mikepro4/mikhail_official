@@ -41,7 +41,7 @@ export const blocksReducer = function(state = initialState, action) {
                 let currentPosition = _.filter(state.updatedBlocks, { position: block.position})
                 if(currentPosition.length > 0) {
                     let keyToDeactivateIndex = _.findIndex(state.updatedBlocks, currentPosition[0]);
-                    newBlocks = update(blocks, {
+                    newBlocks = update(state.updatedBlocks, {
                         $splice: [[keyToDeactivateIndex, 1, block]] 
                     })
                 } else {

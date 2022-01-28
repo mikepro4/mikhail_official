@@ -25,6 +25,7 @@ import {
 import {
     createWord,
     deleteWord,
+    convertToPositions
 } from "../../../../redux/actions/wordsActions"
 
 class WordSettingsForm extends Component {
@@ -56,28 +57,36 @@ class WordSettingsForm extends Component {
 	render() {
         const { handleSubmit } = this.props;
         
-        let mathTabOptions = [
+        let sortByOptions = [
 			{
-				value: "sin",
-				name: "Sin"
+				value: "position",
+				name: "Position"
 			},
 			{
-				value: "cos",
-				name: "Cos"
+				value: "h",
+				name: "H"
 			},
 			{
-				value: "tan",
-				name: "Tan"
+				value: "s",
+				name: "S"
 			},
 			{
-				value: "atan",
-				name: "Atan"
+				value: "b",
+				name: "B"
 			},
-			{
-				value: "log",
-				name: "Log"
-			}
 		]
+
+        let sortByDirectionOptions = [
+			{
+				value: "desc",
+				name: "Desc"
+			},
+			{
+				value: "asc",
+				name: "Asc"
+			},
+		]
+
 
 		return (
             <Form onSubmit={handleSubmit} autoComplete="off">
@@ -99,6 +108,30 @@ class WordSettingsForm extends Component {
                     component={Input}
                     title="Audio URL" placeholder="Audio URL"
                 />
+
+                <Field
+                    name="sortBy"
+                    component={TabGroup}
+                    tabOptions={sortByOptions}
+                    label="Sort by:"
+                />
+
+                <Field
+                    name="sortByDirection"
+                    component={TabGroup}
+                    tabOptions={sortByDirectionOptions}
+                    label="Sort by:"
+                />   
+
+                <Button
+                    className={"submit-button theme-" + this.props.theme}
+                    loading={this.state.loading}
+                    onClick={() => {
+                        this.props.convertToPositions(this.props.word, this.props.sortedBlocks)
+                    }}
+                        text="Convert To Positions"
+                    large="true"
+                />           
 
                 {this.renderBlocks()}
                
@@ -184,13 +217,16 @@ WordSettingsForm = reduxForm({
 
 const mapStateToProps = state => ({
     user: state.app.user,
-    word: state.app.activeWord
+    word: state.app.activeWord,
+    sortedBlocks: state.app.sortedBlocks
 });
 
 export default connect(mapStateToProps, {
     deleteWord,
     hideDrawer,
-    createWord
+    createWord,
+    convertToPositions,
+    convertToPositions
 })(withRouter(WordSettingsForm));
 
   
