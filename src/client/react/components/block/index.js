@@ -40,35 +40,56 @@ class Block extends Component {
         // })
 
         // let image = _.filter(this.props.sortedBlocks, {position: this.props.position});
-        let image = this.props.sortedBlocks[this.props.position]
-        // console.log(this.props.sortedBlocks[this.props.position])
-        // console.log(image)
+        // let image = _.filter(this.props.sortedBlocks, {position: this.props.position})
+        // // console.log(this.props.sortedBlocks[this.props.position])
+        // // console.log(image)
+        // if(image.length > 0) {
+        //     this.setState({
+        //         value: image[0].url
+        //     })
+        // }
+
+        this.loadImage()
+
+    }
+
+    loadImage() {
+        let image
+        let filteredImages = _.filter(this.props.sortedBlocks, {position: this.props.position})
+        image = filteredImages[0]
+        
         if(image) {
             this.setState({
                 value: image.url
             })
+        } else {
+            this.setState({
+                value: null
+            })
         }
-
+        
     }
 
     componentDidUpdate = (prevprops) => {
         if(!_.isEqual(prevprops.sortedBlocks, this.props.sortedBlocks)) {
-
-            
+            let image1 = _.filter(this.props.sortedBlocks, {position: this.props.position});
+            console.log("here",image1 )
 
             // let image = _.filter(this.props.sortedBlocks, {position: this.props.position});
-            let image = this.props.sortedBlocks[this.props.position]
-            // console.log(this.props.sortedBlocks, this.props.position)
-            // console.log(image)
-            if(image) {
-                this.setState({
-                    value: image.url
-                })
-            } else {
-                this.setState({
-                    value: ""
-                })
-            }
+            // let image = this.props.sortedBlocks[this.props.position]
+            // // console.log(this.props.sortedBlocks, this.props.position)
+            // // console.log(image)
+            // if(image) {
+            //     this.setState({
+            //         value: image.url
+            //     })
+            // } else {
+            //     this.setState({
+            //         value: ""
+            //     })
+            // }
+
+            this.loadImage()
         }
 
         if(prevprops.blocks.uploadDone !== this.props.blocks.uploadDone && this.props.blocks.uploadDone == true) {
@@ -100,16 +121,19 @@ class Block extends Component {
 
         // console.log(this.getQueryParams().word,  this.props.word._id)
 
-        // if(this.getQueryParams().word !== this.props.word._id) {
+        if(this.getQueryParams().word !== this.props.word._id) {
 
-        //     let image = _.filter(this.props.sortedBlocks, {position: this.props.position});
-        //     // console.log(image)
-        //     if(image.length > 0) {
-        //         this.setState({
-        //             value: image[0].url
-        //         })
-        //     }
-        // }
+            let image = _.filter(this.props.sortedBlocks, {position: this.props.position})
+            // console.log(this.props.sortedBlocks[this.props.position])
+            // console.log(image)
+            if(image.length > 0) {
+                this.setState({
+                    value: image[0].url
+                })
+            }
+
+            this.loadImage()
+        }
     }
 
     getQueryParams = () => {
@@ -128,11 +152,13 @@ class Block extends Component {
 
         let newPosition
         console.log(this.props.position, position)
-        if(position == 0 ) {
-            newPosition = this.props.position
-        } else if(position > 0) {
-            newPosition = this.props.position + position + 1
+        if(position == 1 ) {
+            newPosition = this.props.blocks.initialPosition
+        } else if(position > 1) {
+            newPosition = this.props.blocks.initialPosition + position -1
         }
+
+        console.log("newPosition: ", newPosition )
 
         this.props.addBlock(
             {

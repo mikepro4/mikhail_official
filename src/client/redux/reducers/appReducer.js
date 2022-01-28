@@ -159,8 +159,16 @@ export const appReducer = (state = initialState, action) => {
             // let sortedBlocks = _.orderBy(originalBlocks, block => block.palette.h, [direction]);
             // console.log(sortedBlocks)
             let sortedBlocks = []
+            let newSortedBlocks
             if(sortBy == "position") {
                 sortedBlocks = _.orderBy(originalBlocks, block => block.position, [direction]); 
+
+                newSortedBlocks = sortedBlocks.map((block,i )=> {
+                    return {
+                        ...block,
+                        position: block.position
+                    }
+                })
             }
 
             if(sortBy == "h") {
@@ -175,11 +183,20 @@ export const appReducer = (state = initialState, action) => {
                 sortedBlocks = _.orderBy(originalBlocks, block => block.palette.b, [direction]);
             }
 
+            if(sortBy !== "position") {
+                newSortedBlocks = sortedBlocks.map((block,i )=> {
+                    return {
+                        ...block,
+                        position: i
+                    }
+                })
+            }
+
             // console.log(block.position, direction)
 
             return {
                 ...state,
-                sortedBlocks: sortedBlocks
+                sortedBlocks: newSortedBlocks
             }
         case CLEAR_SORTED_BLOCKS: 
             return {

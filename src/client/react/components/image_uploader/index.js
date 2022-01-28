@@ -29,7 +29,6 @@ class Avatar extends Component {
             files
         )
 		const uploaders = files.map((file,i) => {
-            console.log(i)
 			// Progress
 			var config = {
 				onUploadProgress: function(progressEvent) {
