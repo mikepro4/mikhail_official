@@ -7,7 +7,7 @@
     z-index: 1000;
     display: flex;
     justify-content: space-between;
-    overflow: hidden;
+    // overflow: hidden;
 
     &.demo-mode {
         display: none;
@@ -230,6 +230,13 @@
             
         }
     }
+}
+
+.upload-status {
+    position: absolute;
+    top: 45px;
+    left: 20px;
+    font-size: 11px;
 }
 
 

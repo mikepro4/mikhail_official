@@ -41,7 +41,7 @@ class Block extends Component {
 
         // let image = _.filter(this.props.sortedBlocks, {position: this.props.position});
         let image = this.props.sortedBlocks[this.props.position]
-        console.log(this.props.sortedBlocks[this.props.position])
+        // console.log(this.props.sortedBlocks[this.props.position])
         // console.log(image)
         if(image) {
             this.setState({
@@ -58,7 +58,7 @@ class Block extends Component {
 
             // let image = _.filter(this.props.sortedBlocks, {position: this.props.position});
             let image = this.props.sortedBlocks[this.props.position]
-            console.log(this.props.sortedBlocks, this.props.position)
+            // console.log(this.props.sortedBlocks, this.props.position)
             // console.log(image)
             if(image) {
                 this.setState({
@@ -127,11 +127,11 @@ class Block extends Component {
         console.log(value, position, palette)
 
         let newPosition
-
+        console.log(this.props.position, position)
         if(position == 0 ) {
             newPosition = this.props.position
         } else if(position > 0) {
-            newPosition = this.props.position + position
+            newPosition = this.props.position + position + 1
         }
 
         this.props.addBlock(

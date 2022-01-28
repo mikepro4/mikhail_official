@@ -154,7 +154,8 @@ class WordSettingsForm extends Component {
                             metadata: {
                                 ...this.props.word.metadata,
                                 title: this.props.word.metadata.title + " copy"
-                            }
+                            },
+                            blocks: this.props.sortedBlocks
                         }
                         this.setState({
                             loading: true

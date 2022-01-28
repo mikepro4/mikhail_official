@@ -404,6 +404,28 @@ class Header extends Component {
         }, 1000)
     }
 
+    renderStatus() {
+        let status = null
+        if(this.props.blocks.status == "saving") {
+            status = "Saving..."
+        }
+
+        if(this.props.blocks.status == "uploading") {
+            status = "Uploading..."
+        }
+
+        if(status) {
+            return (
+                <div className="upload-status">
+                    {status}
+                </div>
+            )
+        } else {
+            return(<div></div>)
+        }
+        
+    }
+
 
     render() {
         return (
@@ -425,6 +447,10 @@ class Header extends Component {
                         }}>
                             Mikhail Proniushkin
                         </Link>
+
+                        {this.renderStatus()}
+
+                        
                     </div>
 
                     <div className="menu_icon" onClick={() => {
@@ -446,7 +472,8 @@ function mapStateToProps(state) {
     return {
         location: state.router.location,
         demoMode: false,
-        user: state.app.user
+        user: state.app.user,
+        blocks: state.blocks
     };
 }
 
