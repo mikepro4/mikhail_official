@@ -57,7 +57,7 @@ class Block extends Component {
         let image
         let filteredImages = _.filter(this.props.sortedBlocks, {position: this.props.position})
         image = filteredImages[0]
-        
+
         if(image) {
             this.setState({
                 value: image.url
@@ -123,16 +123,7 @@ class Block extends Component {
 
         if(this.getQueryParams().word !== this.props.word._id) {
 
-            let image = _.filter(this.props.sortedBlocks, {position: this.props.position})
-            // console.log(this.props.sortedBlocks[this.props.position])
-            // console.log(image)
-            if(image.length > 0) {
-                this.setState({
-                    value: image[0].url
-                })
-            }
-
-            this.loadImage()
+            // this.loadImage()
         }
     }
 
